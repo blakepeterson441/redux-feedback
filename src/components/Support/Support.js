@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import Review from '../Review/Review';
 
 const styles = theme => ({
     textField: {
@@ -13,6 +14,32 @@ const styles = theme => ({
 
 class Support extends Component {
 
+    state = {
+        support: {
+            support_value: '',
+        }
+    }
+
+    handleChangeFor = (propertyName, event) => {
+        this.setState({
+            support: {
+                ...this.state.support,
+                [propertyName]: event.target.value
+            }
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(`Adding support`, this.state.support);
+        this.props.dispatch({
+            type: `ADD_TO_SUPPORT`,
+            payload: this.state.support
+        })
+        this.props.history.push('/Comments');
+    } // handle submit
+
+
     render(){
 
         const { classes } = this.props;
@@ -23,9 +50,11 @@ class Support extends Component {
                 <form>
                     <TextField required id="support"
                         className={classes.textField}
-                        label="Support?" margin="normal"
-                        
+                        label="Support?" margin="normal"onChange={(event) => this.handleChangeFor('support_value', event)}
                     />
+                    <button type="submit">
+                        Next
+                    </button>
                 </form>
             </>
         )

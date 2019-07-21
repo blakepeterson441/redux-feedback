@@ -11,7 +11,7 @@ const styles = theme => ({
     }
 });
 
-class Comment extends Component {
+class Comments extends Component {
 
     render(){
 
@@ -21,7 +21,7 @@ class Comment extends Component {
             <>
                 <h1>Any comments you want to leave?</h1>
                 <form>
-                    <TextField required id="comment"
+                    <TextField required id="comments"
                         className={classes.textField}
                         label="Comments" margin="normal"
                         
@@ -32,4 +32,4 @@ class Comment extends Component {
     }
 }
 
-export default withStyles(styles)(connect()(Comment));
+export default withStyles(styles)(connect()(Comments));

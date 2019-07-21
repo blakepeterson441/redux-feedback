@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import Review from '../Review/Review';
 
 const styles = theme => ({
     textField: {
@@ -12,6 +13,31 @@ const styles = theme => ({
 });
 
 class Understanding extends Component {
+
+    state = {
+        understanding: {
+            understanding_value: '',
+        }
+    }
+
+    handleChangeFor = (propertyName, event) => {
+        this.setState({
+            understanding: {
+                ...this.state.understanding,
+                [propertyName]: event.target.value
+            }
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(`Adding understanding`, this.state.understanding);
+        this.props.dispatch({
+            type: `ADD_TO_UNDERSTANDING`,
+            payload: this.state.understanding
+        })
+        this.props.history.push('/Support');
+    } // handle submit
 
     render(){
 
@@ -24,8 +50,11 @@ class Understanding extends Component {
                     <TextField required id="understanding"
                         className={classes.textField}
                         label="Understanding?" margin="normal"
-                        
+                        onChange={(event) => this.handleChangeFor('understanding_value', event)}
                     />
+                    <button type="submit">
+                        Next
+                    </button>
                 </form>
             </>
         )

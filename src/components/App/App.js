@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Comment from '../Comment/Comment';
+import Comments from '../Comments/Comments';
 import Feeling from '../Feeling/Feeling';
 import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
@@ -35,7 +35,7 @@ class App extends Component {
             <Route exact path='/' component={Feeling} />
             <Route path='/Understanding' component={Understanding} />
             <Route path='/Support' component={Support} />
-            <Route path='/Comment' component={Comment} />
+            <Route path='/Comments' component={Comments} />
             <Route path='/Review' component={Review} />
         </div>
       </Router>
