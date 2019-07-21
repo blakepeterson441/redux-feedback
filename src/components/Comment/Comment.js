@@ -4,7 +4,7 @@ class Comment extends Component {
     render(){
         return(
             <>
-                <h1>Comment Component</h1>
+                <h1>Any comments you want to leave?</h1>
             </>
         )
     }

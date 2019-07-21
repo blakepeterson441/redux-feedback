@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Support extends Component {
+class Feeling extends Component {
     render(){
         return(
             <>
-                <h1>How well are you being supported?</h1>
+                <h1>Review Your Feedback</h1>
             </>
         )
     }
 }
 
-export default Support;
+export default Feeling;

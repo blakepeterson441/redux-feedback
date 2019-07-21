@@ -4,7 +4,7 @@ class Understanding extends Component {
     render(){
         return(
             <>
-                <h1>Understanding Component</h1>
+                <h1>How well are you understanding the content?</h1>
             </>
         )
     }
