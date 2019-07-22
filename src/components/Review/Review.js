@@ -5,15 +5,8 @@ import Axios from 'axios';
 
 class Review extends Component {
 
-    state = {
-        feeling: this.props.reduxStore.feelingReducer.feeling_value,
-        understanding: this.props.reduxStore.understandingReducer,
-        support: this.props.reduxStore.supportReducer,
-        comments: this.props.reduxStore.commentsReducer,
 
-    }
-
-    checkout = () => {
+    complete = () => {
         Axios.post('/api/form', this.state).then(response => {
             console.log(response);
             // this.props.history.push('/');
@@ -33,6 +26,7 @@ class Review extends Component {
                     <div>Support: {this.props.reduxStore.supportReducer.support_value}</div>
                     <div>Comments: {this.props.reduxStore.commentsReducer.comments_value}</div>
                 </div>
+                <button onClick={this.complete}>Complete</button>
             </>
         )
     }
