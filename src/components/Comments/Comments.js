@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import Review from '../Review/Review';
 
 const styles = theme => ({
     textField: {
@@ -13,6 +14,32 @@ const styles = theme => ({
 
 class Comments extends Component {
 
+    state = {
+        newComments: {
+            comments_value: '',
+        }
+    }
+
+    handleChangeFor = (propertyName, event) => {
+        this.setState({
+            newComments: {
+                ...this.state.newComments,
+                [propertyName]: event.target.value
+            }
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(`Adding comments`, this.state.newComments);
+        this.props.dispatch({
+            type: `ADD_TO_COMMENTS`,
+            payload: this.state.newComments
+        })
+        this.props.history.push('/Review');
+    } 
+
+
     render(){
 
         const { classes } = this.props;
@@ -20,12 +47,18 @@ class Comments extends Component {
         return(
             <>
                 <h1>Any comments you want to leave?</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <TextField required id="comments"
                         className={classes.textField}
                         label="Comments" margin="normal"
+                        value={this.state.newComments.comments_value}
+                        onChange={(event) => this.handleChangeFor('comments_value', event)}
                         
                     />
+                    <button type="submit">
+                        Next
+                    </button>
+                    <Review />
                 </form>
             </>
         )

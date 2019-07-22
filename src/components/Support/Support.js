@@ -15,15 +15,15 @@ const styles = theme => ({
 class Support extends Component {
 
     state = {
-        support: {
+        newSupport: {
             support_value: '',
         }
-    }
+    }   
 
     handleChangeFor = (propertyName, event) => {
         this.setState({
-            support: {
-                ...this.state.support,
+            newSupport: {
+                ...this.state.newSupport,
                 [propertyName]: event.target.value
             }
         })
@@ -31,10 +31,10 @@ class Support extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Adding support`, this.state.support);
+        console.log(`Adding support`, this.state.newSupport);
         this.props.dispatch({
             type: `ADD_TO_SUPPORT`,
-            payload: this.state.support
+            payload: this.state.newSupport
         })
         this.props.history.push('/Comments');
     } // handle submit
@@ -47,14 +47,17 @@ class Support extends Component {
         return(
             <>
                 <h1>How well are you being supported?</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <TextField required id="support"
                         className={classes.textField}
-                        label="Support?" margin="normal"onChange={(event) => this.handleChangeFor('support_value', event)}
+                        label="Support?" margin="normal"
+                        value={this.state.newSupport.support_value}
+                        onChange={(event) => this.handleChangeFor('support_value', event)}
                     />
                     <button type="submit">
                         Next
                     </button>
+                    <Review />
                 </form>
             </>
         )

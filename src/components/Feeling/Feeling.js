@@ -2,31 +2,29 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import Axios from 'axios';
 import Review from '../Review/Review';
 
 
 const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  }
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+    }
 });
-
 
 class Feeling extends Component {
 
     state = {
-        feeling: {
+        newFeeling: {
             feeling_value: '',
         }
     }
 
     handleChangeFor = (propertyName, event) => {
         this.setState({
-            feeling: {
-                ...this.state.feeling,
+            newFeeling: {
+                ...this.state.newFeeling,
                 [propertyName]: event.target.value
             }
         })
@@ -34,10 +32,10 @@ class Feeling extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Adding feeling`, this.state.feeling);
+        console.log(`Adding feeling`, this.state.newFeeling);
         this.props.dispatch({
             type: `ADD_TO_FEELING`,
-            payload: this.state.feeling
+            payload: this.state.newFeeling
         })
         this.props.history.push('/Understanding');
     } // handle submit
@@ -53,11 +51,13 @@ class Feeling extends Component {
                     <TextField required id="feeling"
                         className={classes.textField}
                         label="Feeling?" margin="normal"
+                        value={this.state.newFeeling.feeling_value}
                         onChange={(event) => this.handleChangeFor('feeling_value', event)}
                     />
-                <button type="submit">
-                    Next
-                </button>
+                    <button type="submit">
+                        Next
+                    </button>
+                    <Review />
                 </form>
 
             </>

@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Review from '../Review/Review';
 
+
 const styles = theme => ({
     textField: {
         marginLeft: theme.spacing(1),
@@ -15,15 +16,15 @@ const styles = theme => ({
 class Understanding extends Component {
 
     state = {
-        understanding: {
+        newUnderstanding: {
             understanding_value: '',
         }
     }
 
     handleChangeFor = (propertyName, event) => {
         this.setState({
-            understanding: {
-                ...this.state.understanding,
+            newUnderstanding: {
+                ...this.state.newUnderstanding,
                 [propertyName]: event.target.value
             }
         })
@@ -31,10 +32,10 @@ class Understanding extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Adding understanding`, this.state.understanding);
+        console.log(`Adding understanding`, this.state.newUnderstanding);
         this.props.dispatch({
             type: `ADD_TO_UNDERSTANDING`,
-            payload: this.state.understanding
+            payload: this.state.newUnderstanding
         })
         this.props.history.push('/Support');
     } // handle submit
@@ -46,15 +47,17 @@ class Understanding extends Component {
         return(
             <>
                 <h1>How well are you understanding the content?</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <TextField required id="understanding"
                         className={classes.textField}
                         label="Understanding?" margin="normal"
+                        value={this.state.newUnderstanding.understanding_value}
                         onChange={(event) => this.handleChangeFor('understanding_value', event)}
                     />
                     <button type="submit">
                         Next
                     </button>
+                    <Review />
                 </form>
             </>
         )

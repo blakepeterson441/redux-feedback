@@ -28,15 +28,8 @@ const supportReducer = (state = [], action) => {
     return state;
 }
 
-const commentReducer = (state = [], action) => {
-    if (action.type === 'ADD_TO_COMMENT') {
-        return action.payload;
-    }
-    return state;
-}
-
-const reviewReducer = (state = [], action) => {
-    if (action.type === 'ADD_TO_REVIEW') {
+const commentsReducer = (state = [], action) => {
+    if (action.type === 'ADD_TO_COMMENTS') {
         return action.payload;
     }
     return state;
@@ -50,8 +43,7 @@ const reduxStore = createStore(
         feelingReducer,
         understandingReducer,
         supportReducer,
-        commentReducer,
-        reviewReducer,
+        commentsReducer,
     }),
 
     applyMiddleware(logger)
