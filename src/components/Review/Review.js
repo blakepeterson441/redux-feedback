@@ -26,7 +26,7 @@ class Review extends Component {
                     <div>Support: {this.props.reduxStore.supportReducer.support_value}</div>
                     <div>Comments: {this.props.reduxStore.commentsReducer.comments_value}</div>
                 </div>
-                <button onClick={this.complete}>Complete</button>
+                <button onClick={this.complete}>Submit</button>
             </>
         )
     }
