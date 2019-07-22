@@ -9,7 +9,6 @@ class Review extends Component {
     complete = () => {
         Axios.post('/api/form', this.state).then(response => {
             console.log(response);
-            // this.props.history.push('/');
         }).catch(err => {
             console.log(err);
         })
