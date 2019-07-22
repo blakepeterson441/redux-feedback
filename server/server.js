@@ -13,7 +13,7 @@ app.use(express.static('build'));
 app.post('/api/form', (req, res) => {
     console.log('in /feedback POST:', req.body);
     const query = `INSERT INTO "feedback" ("feeling", "understanding", "support", "comments") VALUES ($1, $2, $3, $4);`;
-    const values = [req.body.feeling, req.body.understanding, req.body.supported, req.body.comments];
+    const values = [req.body.feeling, req.body.understanding, req.body.support, req.body.comments];
     pool.query(query, values).then((response) => {
         res.sendStatus(201);
     }).catch((err) => {

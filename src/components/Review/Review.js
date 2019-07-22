@@ -5,6 +5,13 @@ import Axios from 'axios';
 
 class Review extends Component {
 
+    state = {
+        feeling: this.props.reduxStore.feelingReducer.feeling_value,
+        understanding: this.props.reduxStore.understandingReducer.understanding_value,
+        support: this.props.reduxStore.supportReducer.support_value,
+        comments: this.props.reduxStore.commentsReducer.comments_value,
+
+    }
 
     complete = () => {
         Axios.post('/api/form', this.state).then(response => {
