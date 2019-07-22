@@ -5,6 +5,7 @@ import Axios from 'axios';
 
 class Review extends Component {
 
+    // set local state
     state = {
         feeling: this.props.reduxStore.feelingReducer.feeling_value,
         understanding: this.props.reduxStore.understandingReducer.understanding_value,
@@ -13,14 +14,35 @@ class Review extends Component {
 
     }
 
+    isSurveyComplete = () => {
+        let button = '';
+        let feeling = this.props.reduxStore.feelingReducer.feeling_value;
+        let understanding = this.props.reduxStore.understandingReducer.understanding_value;
+        let support = this.props.reduxStore.supportReducer.support_value;
+        if ( (feeling > 0 && feeling <= 5) &&
+                (understanding > 0 && understanding <= 5) &&
+                (support > 0 && support <= 5)) 
+                {
+                    button = <button onClick={this.complete}>Submit</button>
+                }
+                else {
+                    button = <button disabled>Incomplete</button>;
+                }
+        return button;
+    }
+
+    // send information to database
     complete = () => {
         Axios.post('/api/form', this.state).then(response => {
             console.log(response);
         }).catch(err => {
             console.log(err);
         })
+        // Go back to Main page
+        this.props.history.push('/');
     }
 
+    // render to the DOM
     render(){
 
         return(
@@ -32,7 +54,7 @@ class Review extends Component {
                     <div>Support: {this.props.reduxStore.supportReducer.support_value}</div>
                     <div>Comments: {this.props.reduxStore.commentsReducer.comments_value}</div>
                 </div>
-                <button onClick={this.complete}>Submit</button>
+                {this.isSurveyComplete()}
             </>
         )
     }

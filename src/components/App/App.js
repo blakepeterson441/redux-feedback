@@ -20,6 +20,8 @@ const theme = createMuiTheme({
   }
 });
 
+// set up theme/routes/home page in App
+// render to the DOM
 class App extends Component {
   render() {
     return (

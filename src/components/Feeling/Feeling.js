@@ -15,6 +15,7 @@ const styles = theme => ({
 
 class Feeling extends Component {
 
+    // set local state
     state = {
         newFeeling: {
             feeling_value: '',
@@ -30,6 +31,8 @@ class Feeling extends Component {
         })
     }
 
+    // TODO - Update Redux, dispatch Action
+    // handleSubmit
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Adding feeling`, this.state.newFeeling);
@@ -37,9 +40,12 @@ class Feeling extends Component {
             type: `ADD_TO_FEELING`,
             payload: this.state.newFeeling
         })
+        // Navigate to next page
         this.props.history.push('/Understanding');
-    } // handle submit
+    } // end handle submit
 
+
+    // render to the DOM
     render(){
 
         const { classes } = this.props;

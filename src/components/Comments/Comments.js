@@ -14,6 +14,7 @@ const styles = theme => ({
 
 class Comments extends Component {
 
+    // set local state
     state = {
         newComments: {
             comments_value: '',
@@ -29,6 +30,7 @@ class Comments extends Component {
         })
     }
 
+    // handle submit
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Adding comments`, this.state.newComments);
@@ -36,10 +38,12 @@ class Comments extends Component {
             type: `ADD_TO_COMMENTS`,
             payload: this.state.newComments
         })
+        // Navigate to next page
         this.props.history.push('/Review');
-    } 
+    }  // end handle submit
 
 
+    // render to the DOM
     render(){
 
         const { classes } = this.props;

@@ -14,6 +14,7 @@ const styles = theme => ({
 
 class Support extends Component {
 
+    // set local state
     state = {
         newSupport: {
             support_value: '',
@@ -29,6 +30,7 @@ class Support extends Component {
         })
     }
 
+    // handle submit
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Adding support`, this.state.newSupport);
@@ -36,10 +38,12 @@ class Support extends Component {
             type: `ADD_TO_SUPPORT`,
             payload: this.state.newSupport
         })
+        // Navigate to next page
         this.props.history.push('/Comments');
-    } // handle submit
+    } // end handle submit
 
 
+    // render to the DOM
     render(){
 
         const { classes } = this.props;

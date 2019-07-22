@@ -15,6 +15,7 @@ const styles = theme => ({
 
 class Understanding extends Component {
 
+    // set local state
     state = {
         newUnderstanding: {
             understanding_value: '',
@@ -30,6 +31,7 @@ class Understanding extends Component {
         })
     }
 
+    // handle submit
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Adding understanding`, this.state.newUnderstanding);
@@ -37,9 +39,12 @@ class Understanding extends Component {
             type: `ADD_TO_UNDERSTANDING`,
             payload: this.state.newUnderstanding
         })
+        // Navigate to next page
         this.props.history.push('/Support');
-    } // handle submit
+    } // end handle submit
 
+
+    // render to the DOM
     render(){
 
         const { classes } = this.props;
